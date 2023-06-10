@@ -144,6 +144,13 @@ def show_search(query=None):
     from resources.lib.modules.search import Search
     Search().show_search(query)
 
+@routing.route('/catalog/allprograms/')
+def show_allprograms():
+    import xbmcaddon
+    import xbmcgui
+
+    xbmcgui.Dialog().ok("This is a test")
+    
 
 @routing.route('/play/epg/<channel>/<timestamp>')
 def play_epg_datetime(channel, timestamp):

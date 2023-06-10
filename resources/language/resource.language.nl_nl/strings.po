@@ -40,6 +40,10 @@ msgctxt "#30010"
 msgid "Search the VTM GO catalogue"
 msgstr "Doorzoek de VTM catalogus"
 
+msgctxt "#30011"
+msgid "Browse through all programs"
+msgstr "Doorblader alle programma's"
+
 msgctxt "#30013"
 msgid "TV guide"
 msgstr "Tv-gids"
@@ -75,6 +79,10 @@ msgstr "Kids"
 msgctxt "#30022"
 msgid "Show the VTM GO recommendations for Kids"
 msgstr "Bekijk de VTM GO aanbevelingen voor kinderen"
+
+msgctxt "#30023"
+msgid "All programs"
+msgstr "Alle programma's"
 
 # SUBMENUS
 msgctxt "#30052"

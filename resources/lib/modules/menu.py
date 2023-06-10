@@ -121,6 +121,18 @@ class Menu:
             ),
         ))
 
+        listing.append(kodiutils.TitleItem(
+            title=kodiutils.localize(30023),  # All programs
+            path=kodiutils.url_for('show_allprograms'),
+            art_dict=dict(
+                icon='DefaultAddonsSearch.png',
+                fanart=kodiutils.get_addon_info('fanart'),
+            ),
+            info_dict=dict(
+                plot=kodiutils.localize(30011),
+            ),
+        ))              
+
         kodiutils.show_listing(listing, sort=['unsorted'])
 
     @staticmethod
