@@ -149,7 +149,7 @@ def show_allprograms():
     import xbmcaddon
     import xbmcgui
 
-    xbmcgui.Dialog().ok("This is a test")
+    xbmcgui.Dialog().ok("Testeke","This is a test")
     
 
 @routing.route('/play/epg/<channel>/<timestamp>')
