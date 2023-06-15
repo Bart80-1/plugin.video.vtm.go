@@ -48,6 +48,18 @@ class Menu:
         ))
 
         listing.append(kodiutils.TitleItem(
+            title=kodiutils.localize(30023),  # All programs
+            path=kodiutils.url_for('show_allprograms', storefront=STOREFRONT_MAIN),
+            art_dict=dict(
+                icon='DefaultFavourites.png',
+                fanart=kodiutils.get_addon_info('fanart'),
+            ),
+            info_dict=dict(
+                plot=kodiutils.localize(30024),
+            ),
+        ))
+
+        listing.append(kodiutils.TitleItem(
             title=kodiutils.localize(30003),  # Movies
             path=kodiutils.url_for('show_recommendations', storefront=STOREFRONT_MOVIES),
             art_dict=dict(

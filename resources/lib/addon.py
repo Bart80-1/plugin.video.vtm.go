@@ -108,6 +108,10 @@ def show_recommendations_category(storefront, category):
     from resources.lib.modules.catalog import Catalog
     Catalog().show_recommendations_category(storefront, category)
 
+@routing.route('/catalog/show_allprograms')
+def show_allprograms():
+    from resources.lib.modules.catalog import Catalog
+    Catalog().show_allprograms()
 
 @routing.route('/catalog/mylist')
 def show_mylist():

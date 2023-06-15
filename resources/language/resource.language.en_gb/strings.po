@@ -74,6 +74,14 @@ msgctxt "#30022"
 msgid "Show the VTM GO recommendations for Kids"
 msgstr ""
 
+msgctxt "#30023"
+msgid "All programs"
+msgstr ""
+
+msgctxt "#30024"
+msgid "Show all programs"
+msgstr ""
+
 
 # SUBMENUS
 msgctxt "#30052"
