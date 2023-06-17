@@ -185,8 +185,10 @@ class Catalog:
 
     def show_allprograms(self):
         #TODO::Clean up; make code from show_recommendations(_category) reusable instead of copy/paste
+        storefront=STOREFRONT_MAIN
+
         try:
-            results = self._api.get_storefront(STOREFRONT_MAIN)
+            resultsc = self._api.get_storefront(storefront)
         except ApiUpdateRequired:
             kodiutils.ok_dialog(message=kodiutils.localize(30705))  # The VTM GO Service has been updated...
             return
@@ -196,36 +198,11 @@ class Catalog:
             kodiutils.ok_dialog(message="%s" % ex)
             return
 
-        listing = []
-        for item in results:
-            if isinstance(item, Category):
+        _LOGGER.debug("Point 10")
 
-                try:
-                    result = self._api.get_storefront_category(STOREFRONT_MAIN, category=item.category_id)
-                except ApiUpdateRequired:
-                    kodiutils.ok_dialog(message=kodiutils.localize(30705))  # The VTM GO Service has been updated...
-                    return
-
-                except Exception as ex:  # pylint: disable=broad-except
-                    _LOGGER.error("%s", ex)
-                    kodiutils.ok_dialog(message="%s" % ex)
-                    return
-
-                listing = []
-                for item in result.content:
-                    listing.append(Menu.generate_titleitem(item))
-
-                content = 'tvshows'  # Fallback to a list of tvshows   
-
-                listing.append(kodiutils.TitleItem(
-                    title=item.title,
-                    path=kodiutils.url_for('show_recommendations_category', storefront=storefront, category=item.category_id),
-                    info_dict=dict(
-                        plot='[B]{category}[/B]'.format(category=item.title),
-                    ),
-                ))
-            else:
-                listing.append(Menu.generate_titleitem(item))         
+        for itemc in resultsc:
+            if isinstance(itemc, Category):
+                _LOGGER.debug("Point 20; category id %s, category title %s",itemc.category_id,itemc.title)        
 
     def show_mylist(self):
         """ Show the items in "My List" """
