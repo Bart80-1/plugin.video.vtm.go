@@ -204,6 +204,10 @@ class Catalog:
             if isinstance(itemc, Category):
                 _LOGGER.debug("Point 20; category id %s, category title %s",itemc.category_id,itemc.title)        
 
+        #TODO:Afwerken
+
+        kodiutils.end_of_directory()
+
     def show_mylist(self):
         """ Show the items in "My List" """
         try:
