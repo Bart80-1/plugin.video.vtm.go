@@ -198,15 +198,31 @@ class Catalog:
             kodiutils.ok_dialog(message="%s" % ex)
             return
 
+        listing = []
         _LOGGER.debug("Point 10")
 
         for itemc in resultsc:
             if isinstance(itemc, Category):
                 _LOGGER.debug("Point 20; category id %s, category title %s",itemc.category_id,itemc.title)        
 
-        #TODO:Afwerken
+                try:
+                    resultp = self._api.get_storefront_category(storefront, itemc.category_id)
+                except ApiUpdateRequired:
+                    kodiutils.ok_dialog(message=kodiutils.localize(30705))  # The VTM GO Service has been updated...
+                    return
 
-        kodiutils.end_of_directory()
+                except Exception as ex:  # pylint: disable=broad-except
+                    _LOGGER.error("%s", ex)
+                    kodiutils.ok_dialog(message="%s" % ex)
+                    return 
+
+                for itemp in resultp.content:
+                    _LOGGER.debug("Point 30; program = %s",itemp)
+
+                    listing.append(Menu.generate_titleitem(itemp))
+
+#        kodiutils.show_listing(listing, resultp.title, 'tvshows', sort=['unsorted', 'label', 'year', 'duration'])        
+        kodiutils.show_listing(listing, category='tvshows')
 
     def show_mylist(self):
         """ Show the items in "My List" """
