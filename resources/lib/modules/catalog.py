@@ -185,6 +185,7 @@ class Catalog:
 
     def show_allprograms(self):
         #TODO::Clean up; make code from show_recommendations(_category) reusable instead of copy/paste
+        #TODO::Remove duplicates
         storefront=STOREFRONT_MAIN
 
         try:
@@ -221,7 +222,8 @@ class Catalog:
 
                     listing.append(Menu.generate_titleitem(itemp))
 
-#        kodiutils.show_listing(listing, resultp.title, 'tvshows', sort=['unsorted', 'label', 'year', 'duration'])        
+        listing=list(set(listing))
+        listing.sort(reverse=False, key=lambda titleitem: titleitem.title)
         kodiutils.show_listing(listing, category='tvshows')
 
     def show_mylist(self):
