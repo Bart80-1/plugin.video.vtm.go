@@ -191,8 +191,15 @@ def show_listing(title_items, category=None, sort=None, content=None, cache=True
         url = title_item.path if title_item.path else None
         listing.append((url, list_item, is_folder))
 
+    _LOGGER.debug("kodiutils.py.show_listing 10 - listing completed")
+
     succeeded = xbmcplugin.addDirectoryItems(routing.handle, listing, len(listing))
+
+    _LOGGER.debug("kodiutils.py.show_listing 20 - addDirectoryItems call completed - Success %s", succeeded)
+
     xbmcplugin.endOfDirectory(routing.handle, succeeded, cacheToDisc=cache)
+
+    _LOGGER.debug("kodiutils.py.show_listing 30 - endOfDirectory called")
 
 
 def play(stream, license_key=None, title=None, art_dict=None, info_dict=None, prop_dict=None, stream_dict=None, subtitles=None):

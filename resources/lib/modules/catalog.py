@@ -195,13 +195,19 @@ class Catalog:
             _LOGGER.error("%s", ex)
             kodiutils.ok_dialog(message="%s" % ex)
             return
-
+        
+        _LOGGER.debug("catalog.py.show_mylist 10 - MyList API finished")
+    
         listing = []
         for item in mylist:
             item.my_list = True
             listing.append(Menu.generate_titleitem(item))
 
+        _LOGGER.debug("catalog.py.show_mylist 20 - listing completed")            
+
         kodiutils.show_listing(listing, 30017, content='files', sort=['unsorted', 'label', 'year', 'duration'])
+
+        _LOGGER.debug("catalog.py.show_mylist 30 - end of method")
 
     def mylist_add(self, content_id):
         """ Add an item to "My List"
