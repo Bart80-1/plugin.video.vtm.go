@@ -157,7 +157,8 @@ def show_listing(title_items, category=None, sort=None, content=None, cache=True
 
     # Add the listings
     listing = []
-    for title_item in title_items:
+    for title_item in title_items:       
+
         # Three options:
         #  - item is a virtual directory/folder (not playable, path)
         #  - item is a playable file (playable, path)

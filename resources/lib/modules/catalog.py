@@ -200,11 +200,9 @@ class Catalog:
             return
 
         listing = []
-        _LOGGER.debug("Point 10")
 
         for itemc in resultsc:
             if isinstance(itemc, Category):
-                _LOGGER.debug("Point 20; category id %s, category title %s",itemc.category_id,itemc.title)        
 
                 try:
                     resultp = self._api.get_storefront_category(storefront, itemc.category_id)
@@ -218,13 +216,22 @@ class Catalog:
                     return 
 
                 for itemp in resultp.content:
-                    _LOGGER.debug("Point 30; program = %s",itemp)
-
                     listing.append(Menu.generate_titleitem(itemp))
 
-        listing=list(set(listing))
         listing.sort(reverse=False, key=lambda titleitem: titleitem.title)
-        kodiutils.show_listing(listing, category='tvshows')
+
+        #TODO::Make this cleaner
+        listing_dedup=[]
+        listing_dedup.append(kodiutils.TitleItem(listing[0]))
+        i=1
+        while i < len(listing):
+            tilast=kodiutils.TitleItem(listing[i-1])
+            ticurrent=kodiutils.TitleItem(listing[i])
+            if tilast.title!=ticurrent.title:
+                listing_dedup.append(ticurrent)            
+            i=i+1
+ 
+        kodiutils.show_listing(listing_dedup, category='tvshows', content='tvshows')
 
     def show_mylist(self):
         """ Show the items in "My List" """
